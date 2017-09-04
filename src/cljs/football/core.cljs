@@ -5,11 +5,12 @@
             [football.subs]
             [football.routes :as routes]
             [football.views :as views]
-            [football.config :as config]))
-
+            [football.config :as config]
+            [devtools.core :as devtools]))
 
 (defn dev-setup []
   (when config/debug?
+    (devtools/install!)
     (enable-console-print!)
     (println "dev mode")))
 
@@ -21,5 +22,6 @@
 (defn ^:export init []
   (routes/app-routes)
   (re-frame/dispatch-sync [:initialize-db])
+  (re-frame/dispatch [:load-from-data-service])
   (dev-setup)
   (mount-root))
