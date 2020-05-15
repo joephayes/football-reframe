@@ -23,7 +23,7 @@
     [{db :db} _]
     {:db (assoc db :loading? true)
      :http-xhrio {:method :get
-                  :uri "http://api.football-data.org/v1/fixtures"
+                  :uri "http://api.football-data.org/v2/competitions"
                   :headers {"X-Auth-Token" config/api-key}
                   :timeout 2000
                   :response-format (ajax/json-response-format {:keywords? true})
